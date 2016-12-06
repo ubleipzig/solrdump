@@ -29,7 +29,7 @@ type Response struct {
 	Response struct {
 		NumFound int               `json:"numFound"`
 		Start    int               `json:"start"`
-		Docs     []json.RawMessage `json:"docs"`
+		Docs     []json.RawMessage `json:"docs"` // dependent on SOLR schema
 	} `json:"response"`
 	NextCursorMark string `json:"nextCursorMark"`
 }
