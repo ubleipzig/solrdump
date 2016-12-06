@@ -17,12 +17,12 @@ Especially section: *Fetching A Large Number of Sorted Results: Cursors*
 Installation
 ------------
 
-Via debian or rpm [package](https://github.com/miku/solrtab/releases).
+Via debian or rpm [package](https://github.com/ubleipzig/solrtab/releases).
 
 Or via go tool:
 
 ```
-$ go get github.com/miku/solrtab/...
+$ go get github.com/ubleipzig/solrtab/...
 ```
 
 Usage

@@ -1,4 +1,4 @@
-Summary:    No frills OAI mirror.
+Summary:    Export SOLR fields.
 Name:       solrtab
 Version:    0.1.2
 Release:    0
@@ -7,7 +7,7 @@ BuildArch:  x86_64
 BuildRoot:  %{_tmppath}/%{name}-build
 Group:      System/Base
 Vendor:     Leipzig University Library, https://www.ub.uni-leipzig.de
-URL:        https://github.com/miku/solrtab
+URL:        https://github.com/ubleipzig/solrtab
 
 %description
 
