@@ -11,6 +11,7 @@ import (
 	"strings"
 )
 
+// Response is a SOLR response.
 type Response struct {
 	Header struct {
 		Status int `json:"status"`
