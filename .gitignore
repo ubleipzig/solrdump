@@ -3,3 +3,4 @@
 solrtab*.deb
 solrtab*.rpm
 /packaging/deb/solrtab/usr/*
+/tmp
