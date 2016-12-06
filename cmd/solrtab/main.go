@@ -74,11 +74,15 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		defer resp.Body.Close()
 
 		dec := json.NewDecoder(resp.Body)
 		var response Response
 		if err := dec.Decode(&response); err != nil {
+			log.Fatal(err)
+		}
+
+		// we do not defer, since we hard-exit on errors anyway
+		if err := resp.Body.Close(); err != nil {
 			log.Fatal(err)
 		}
 
