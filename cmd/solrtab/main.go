@@ -45,6 +45,7 @@ func main() {
 	query := flag.String("q", "*:*", "SOLR query")
 	rows := flag.Int("rows", 1000, "number of rows returned per request")
 	sort := flag.String("sort", "id asc", "sort order (only unique fields allowed)")
+	verbose := flag.Bool("verbose", false, "show progress")
 
 	flag.Parse()
 
@@ -60,8 +61,14 @@ func main() {
 	v.Set("wt", "json")
 	v.Set("cursorMark", "*")
 
+	var total int
+
 	for {
 		link := fmt.Sprintf("%s/select?%s", *server, v.Encode())
+
+		if *verbose {
+			log.Println(link)
+		}
 
 		resp, err := http.Get(link)
 		if err != nil {
@@ -77,6 +84,12 @@ func main() {
 
 		for _, doc := range response.Response.Docs {
 			fmt.Println(string(doc))
+		}
+
+		total += len(response.Response.Docs)
+
+		if *verbose {
+			log.Printf("fetched %d docs", total)
 		}
 
 		if response.NextCursorMark == v.Get("cursorMark") {
