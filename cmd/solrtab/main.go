@@ -8,8 +8,11 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 )
+
+const Version = "0.1.2"
 
 // Response is a SOLR response.
 type Response struct {
@@ -46,8 +49,14 @@ func main() {
 	rows := flag.Int("rows", 1000, "number of rows returned per request")
 	sort := flag.String("sort", "id asc", "sort order (only unique fields allowed)")
 	verbose := flag.Bool("verbose", false, "show progress")
+	version := flag.Bool("version", false, "show version and exit")
 
 	flag.Parse()
+
+	if *version {
+		fmt.Println(Version)
+		os.Exit(0)
+	}
 
 	*server = PrependSchema(*server)
 
