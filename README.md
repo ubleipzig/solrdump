@@ -66,7 +66,7 @@ $ solrdump -server https://localhost:8983/solr/biblio -q '*:*' -fl id,title
 Export documents matching a query and postprocess with jq:
 
 ```
-$ solrdump -server https://localhost:8983/solr/biblio -q '"title:"topic model"' -fl id,title | \
+$ solrdump -server https://localhost:8983/solr/biblio -q 'title:"topic model"' -fl id,title | \
   jq -r .title | \
   head -10
 
