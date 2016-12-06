@@ -110,5 +110,7 @@ func main() {
 		}
 		v.Set("cursorMark", response.NextCursorMark)
 	}
-	log.Printf("fetched %d docs", total)
+	if *verbose {
+		log.Printf("fetched %d docs", total)
+	}
 }
