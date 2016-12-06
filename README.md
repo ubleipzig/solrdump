@@ -3,6 +3,17 @@ README
 
 Export fields from a SOLR index to tabular form, fast.
 
+* https://cwiki.apache.org/confluence/display/solr/Pagination+of+Results
+
+Especially section: *Fetching A Large Number of Sorted Results: Cursors*
+
+> As an alternative to increasing the "start" parameter to request subsequent
+> pages of sorted results, Solr supports using a "Cursor" to scan through
+> results.  Cursors in Solr are a logical concept, that doesn't involve
+> caching any state information on the server.  Instead the sort values of the
+> last document returned to the client are used to compute a "mark"
+> representing a logical point in the ordered space of sort values.
+
 Installation
 ------------
 
