@@ -1,7 +1,7 @@
 SHELL = /bin/bash
-TARGETS = solrtab
+TARGETS = solrdump
 
-PKGNAME = solrtab
+PKGNAME = solrdump
 
 all: $(TARGETS)
 

@@ -1,4 +1,4 @@
-Package: solrtab
+Package: solrdump
 Version: 0.1.2
 Section: utils
 Priority: optional
@@ -6,4 +6,4 @@ Architecture: amd64
 Essential: no
 Depends: libc6 (>= 2.12)
 Maintainer: Martin Czygan <martin.czygan@uni-leipzig.de>
-Description: Export SOLR fields.
+Description: Dump SOLR fields efficiently with cursors.

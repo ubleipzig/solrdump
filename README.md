@@ -17,28 +17,49 @@ Especially section: *Fetching A Large Number of Sorted Results: Cursors*
 Installation
 ------------
 
-Via debian or rpm [package](https://github.com/ubleipzig/solrtab/releases).
+Via debian or rpm [package](https://github.com/ubleipzig/solrdump/releases).
 
 Or via go tool:
 
 ```
-$ go get github.com/ubleipzig/solrtab/...
+$ go get github.com/ubleipzig/solrdump/...
 ```
 
 Usage
 -----
 
 ```shell
-$ solrtab -server https://localhost:8983/solr/biblio -q '*:*' -fl id,title
+solrdump -h
+Usage of solrdump:
+  -fl string
+        field or fields to export, separate multiple values by comma
+  -q string
+        SOLR query (default "*:*")
+  -rows int
+        number of rows returned per request (default 1000)
+  -server string
+        SOLR server, host post and collection (default "http://localhost:8983/solr/example")
+  -sort string
+        sort order (only unique fields allowed) (default "id asc")
+  -verbose
+        show progress
+  -version
+        show version and exit
+```
+
+Export id and title field for all documents:
+
+```shell
+$ solrdump -server https://localhost:8983/solr/biblio -q '*:*' -fl id,title
 {"id":"0000001864","title":"Veröffentlichungen des Museums für Völkerkunde zu Leipzig"}
 {"id":"0000002001","title":"Festschrift zur Feier des 500jährigen Bestehens der ... /"}
 ...
 ```
 
-Postprocess with JSON tools.
+Export documents matching a query and postprocess with jq:
 
 ```
-$ solrtab -server https://localhost:8983/solr/biblio -q '"title:"topic model"' -fl id,title | \
+$ solrdump -server https://localhost:8983/solr/biblio -q '"title:"topic model"' -fl id,title | \
   jq -r .title | \
   head -10
 

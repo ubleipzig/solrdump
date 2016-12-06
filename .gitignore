@@ -1,6 +1,6 @@
-/solrtab-*
-/solrtab
-solrtab*.deb
-solrtab*.rpm
-/packaging/deb/solrtab/usr/*
+/solrdump-*
+/solrdump
+solrdump*.deb
+solrdump*.rpm
+/packaging/deb/solrdump/usr/*
 /tmp
