@@ -1,11 +1,17 @@
 README
 ======
 
-Export fields from a SOLR index to tabular form, fast.
+Export fields from a SOLR index as JSON.
 
 * https://cwiki.apache.org/confluence/display/solr/Pagination+of+Results
 
-Especially section: *Fetching A Large Number of Sorted Results: Cursors*
+Requesting large number of documents from SOLR by increasing the start parameter can be inefficient:
+
+> When you wish to fetch a very large number of sorted results from Solr to
+> feed into an external system, using very large values for the start or rows
+> parameters can be very inefficient.
+
+See also: *Fetching A Large Number of Sorted Results: Cursors*
 
 > As an alternative to increasing the "start" parameter to request subsequent
 > pages of sorted results, Solr supports using a "Cursor" to scan through
@@ -29,7 +35,7 @@ Usage
 -----
 
 ```shell
-solrdump -h
+$ solrdump -h
 Usage of solrdump:
   -fl string
         field or fields to export, separate multiple values by comma
