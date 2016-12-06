@@ -1,6 +1,6 @@
 Summary:    No frills OAI mirror.
 Name:       solrtab
-Version:    0.1.1
+Version:    0.1.2
 Release:    0
 License:    GPL
 BuildArch:  x86_64
@@ -37,4 +37,4 @@ rm -rf %{_topdir}/BUILD/%{name}
 
 %changelog
 * Thu Dec 6 2016 Martin Czygan
-- 0.1.1 initial release
+- 0.1.2 initial release
