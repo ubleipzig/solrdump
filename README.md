@@ -3,6 +3,20 @@ README
 
 Export fields from a SOLR index to tabular form, fast.
 
+Installation
+------------
+
+Via debian or rpm [package](https://github.com/miku/solrtab/releases).
+
+Or via go tool:
+
+```
+$ go get github.com/miku/solrtab/...
+```
+
+Usage
+-----
+
 ```shell
 $ solrtab -server https://localhost:8983/solr/biblio -q '*:*' -fl id,title
 {"id":"0000001864","title":"Veröffentlichungen des Museums für Völkerkunde zu Leipzig"}
@@ -10,7 +24,7 @@ $ solrtab -server https://localhost:8983/solr/biblio -q '*:*' -fl id,title
 ...
 ```
 
-Postprocess.
+Postprocess with JSON tools.
 
 ```
 $ solrtab -server https://localhost:8983/solr/biblio -q '"title:"topic model"' -fl id,title | \
