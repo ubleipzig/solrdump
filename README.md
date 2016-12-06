@@ -5,7 +5,8 @@ Export fields from a SOLR index as JSON.
 
 * https://cwiki.apache.org/confluence/display/solr/Pagination+of+Results
 
-Requesting large number of documents from SOLR by increasing the start parameter can be inefficient:
+Requesting large number of documents from SOLR can lead to *Deep Paging*
+problems:
 
 > When you wish to fetch a very large number of sorted results from Solr to
 > feed into an external system, using very large values for the start or rows
