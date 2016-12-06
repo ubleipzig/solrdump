@@ -43,7 +43,7 @@ func main() {
 	fields := flag.String("fl", "", "field or fields to export, separate multiple values by comma")
 	query := flag.String("q", "*:*", "SOLR query")
 	rows := flag.Int("rows", 1000, "number of rows returned per request")
-	sort := flag.String("sort", "id asc", "sort order")
+	sort := flag.String("sort", "id asc", "sort order (only unique fields allowed)")
 
 	flag.Parse()
 
