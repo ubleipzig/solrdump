@@ -84,7 +84,9 @@ Instant search as one-liner
 Using solrdump + [jq](https://stedolan.github.io/jq/) + [peco](https://github.com/peco/peco).
 
 ```
-solrdump -server http://solr:8085/solr/biblio -q 'title:"artificial intelligence"' -fl 'id,title' | jq -r .title | peco
+$ solrdump -server http://solr:8085/solr/biblio -q 'title:"artificial intelligence"' -fl 'id,title' | \
+  jq -r .title | \
+  peco
 ```
 
 ![](images/8e4zf1ryf2gusi3usv329btt8.gif)
