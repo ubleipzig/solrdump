@@ -90,3 +90,5 @@ $ solrdump -server http://solr:8085/solr/biblio -q 'title:"artificial intelligen
 ```
 
 ![](images/8e4zf1ryf2gusi3usv329btt8.gif)
+
+[...](https://asciinema.org/a/4dj5h3okqvgq16syd0ut05v8m)
