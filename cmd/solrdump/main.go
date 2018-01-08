@@ -83,10 +83,15 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		dec := json.NewDecoder(resp.Body)
 		var response Response
-		if err := dec.Decode(&response); err != nil {
-			log.Fatal(err)
+		switch *wt {
+		case "json":
+			dec := json.NewDecoder(resp.Body)
+			if err := dec.Decode(&response); err != nil {
+				log.Fatal(err)
+			}
+		default:
+			log.Fatalf("wt=%s not implemented", *wt)
 		}
 		// We do not defer, since we hard-exit on errors anyway.
 		if err := resp.Body.Close(); err != nil {
