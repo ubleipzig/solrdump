@@ -12,6 +12,7 @@ import (
 	"strings"
 )
 
+// Version of application.
 const Version = "0.1.2"
 
 // Response is a SOLR response.
@@ -34,7 +35,7 @@ type Response struct {
 	NextCursorMark string `json:"nextCursorMark"`
 }
 
-// Prepends http, if missing.
+// PrependSchema http, if missing.
 func PrependSchema(s string) string {
 	if !strings.HasPrefix(s, "http") {
 		return fmt.Sprintf("http://%s", s)
@@ -75,37 +76,29 @@ func main() {
 
 	for {
 		link := fmt.Sprintf("%s/select?%s", *server, v.Encode())
-
 		if *verbose {
 			log.Println(link)
 		}
-
 		resp, err := http.Get(link)
 		if err != nil {
 			log.Fatal(err)
 		}
-
 		dec := json.NewDecoder(resp.Body)
 		var response Response
 		if err := dec.Decode(&response); err != nil {
 			log.Fatal(err)
 		}
-
-		// we do not defer, since we hard-exit on errors anyway
+		// We do not defer, since we hard-exit on errors anyway.
 		if err := resp.Body.Close(); err != nil {
 			log.Fatal(err)
 		}
-
 		for _, doc := range response.Response.Docs {
 			fmt.Println(string(doc))
 		}
-
 		total += len(response.Response.Docs)
-
 		if *verbose {
 			log.Printf("fetched %d docs", total)
 		}
-
 		if response.NextCursorMark == v.Get("cursorMark") {
 			break
 		}
