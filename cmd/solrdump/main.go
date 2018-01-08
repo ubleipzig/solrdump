@@ -48,6 +48,7 @@ func main() {
 	query := flag.String("q", "*:*", "SOLR query")
 	rows := flag.Int("rows", 1000, "number of rows returned per request")
 	sort := flag.String("sort", "id asc", "sort order (only unique fields allowed)")
+	wt := flag.String("wt", "json", "output format")
 	verbose := flag.Bool("verbose", false, "show progress")
 	version := flag.Bool("version", false, "show version and exit")
 
@@ -67,7 +68,7 @@ func main() {
 	v.Set("rows", fmt.Sprintf("%d", *rows))
 	v.Set("fl", *fields)
 
-	v.Set("wt", "json")
+	v.Set("wt", *wt)
 	v.Set("cursorMark", "*")
 
 	var total int
