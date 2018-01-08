@@ -13,7 +13,7 @@ import (
 )
 
 // Version of application.
-const Version = "0.1.2"
+const Version = "0.1.3"
 
 // Response is a SOLR response.
 type Response struct {
