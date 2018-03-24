@@ -52,7 +52,7 @@ func main() {
 	wt := flag.String("wt", "json", "output format")
 	verbose := flag.Bool("verbose", false, "show progress")
 	version := flag.Bool("version", false, "show version and exit")
-
+	outputfile := flag.String("output", "SolrDump.txt", "ouput file")
 	flag.Parse()
 
 	if *version {
@@ -73,6 +73,12 @@ func main() {
 	v.Set("cursorMark", "*")
 
 	var total int
+	
+	fileoutput, err := os.Create(*outputfile)
+    if err != nil {
+        panic(err)
+    }
+
 
 	for {
 		link := fmt.Sprintf("%s/select?%s", *server, v.Encode())
@@ -84,6 +90,7 @@ func main() {
 			log.Fatal(err)
 		}
 		var response Response
+
 		switch *wt {
 		case "json":
 			dec := json.NewDecoder(resp.Body)
@@ -98,8 +105,12 @@ func main() {
 			log.Fatal(err)
 		}
 		for _, doc := range response.Response.Docs {
-			fmt.Println(string(doc))
+			// fmt.Println(string(doc))
+			if _, err := fileoutput.WriteString(string(doc)); err != nil {
+            	panic(err)
+        	}
 		}
+
 		total += len(response.Response.Docs)
 		if *verbose {
 			log.Printf("fetched %d docs", total)
