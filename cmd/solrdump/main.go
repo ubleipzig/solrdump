@@ -106,7 +106,7 @@ func main() {
 		}
 		for _, doc := range response.Response.Docs {
 			// fmt.Println(string(doc))
-			if _, err := fileoutput.WriteString(string(doc)); err != nil {
+			if _, err := fileoutput.WriteString(string(doc) + "\n"); err != nil {
             	panic(err)
         	}
 		}
@@ -123,4 +123,5 @@ func main() {
 	if *verbose {
 		log.Printf("fetched %d docs", total)
 	}
+	fileoutput.Close()
 }
