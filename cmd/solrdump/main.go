@@ -81,14 +81,15 @@ func main() {
 		}
 		resp, err := http.Get(link)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("http: %s", err)
 		}
 		var response Response
 		switch *wt {
 		case "json":
+			// invalid character '\r' in string literal
 			dec := json.NewDecoder(resp.Body)
 			if err := dec.Decode(&response); err != nil {
-				log.Fatal(err)
+				log.Fatalf("decode: %s", err)
 			}
 		default:
 			log.Fatalf("wt=%s not implemented", *wt)
