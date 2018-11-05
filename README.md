@@ -1,7 +1,8 @@
 README
 ======
 
-Export fields from a SOLR index as JSON.
+Export documents from a SOLR index as JSON, fast and simply from the command
+line.
 
 * https://cwiki.apache.org/confluence/display/solr/Pagination+of+Results
 
@@ -16,10 +17,10 @@ See also: *Fetching A Large Number of Sorted Results: Cursors*
 
 > As an alternative to increasing the "start" parameter to request subsequent
 > pages of sorted results, Solr supports using a "Cursor" to scan through
-> results.  Cursors in Solr are a logical concept, that doesn't involve
-> caching any state information on the server.  Instead the sort values of the
-> last document returned to the client are used to compute a "mark"
-> representing a logical point in the ordered space of sort values.
+> results. Cursors in Solr are a logical concept, that doesn't involve caching
+> any state information on the server. Instead the sort values of the last
+> document returned to the client are used to compute a "mark" representing a
+> logical point in the ordered space of sort values.
 
 Installation
 ------------
@@ -63,7 +64,7 @@ $ solrdump -server https://localhost:8983/solr/biblio -q '*:*' -fl id,title
 ...
 ```
 
-Export documents matching a query and postprocess with jq:
+Export documents matching a query and postprocess with [jq](https://stedolan.github.io/jq/):
 
 ```
 $ solrdump -server https://localhost:8983/solr/biblio -q 'title:"topic model"' -fl id,title | \
@@ -81,7 +82,7 @@ Time dynamic topic models /
 Instant search as one-liner
 ---------------------------
 
-Using solrdump + [jq](https://stedolan.github.io/jq/) + [peco](https://github.com/peco/peco).
+Using solrdump + [jq](https://stedolan.github.io/jq/) + [peco](https://github.com/peco/peco) (or [fzf](https://github.com/junegunn/fzf)).
 
 ```
 $ solrdump -server http://solr:8085/solr/biblio -q 'title:"artificial intelligence"' -fl 'id,title' | \
