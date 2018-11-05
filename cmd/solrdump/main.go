@@ -2,6 +2,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -53,12 +54,17 @@ func main() {
 	wt := flag.String("wt", "json", "output format")
 	verbose := flag.Bool("verbose", false, "show progress")
 	version := flag.Bool("version", false, "show version and exit")
+	skipCertificateVerification := flag.Bool("k", false, "skip certificate verfication")
 
 	flag.Parse()
 
 	if *version {
 		fmt.Println(Version)
 		os.Exit(0)
+	}
+
+	if *skipCertificateVerification {
+		http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	}
 
 	*server = PrependSchema(*server)
