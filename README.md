@@ -22,6 +22,14 @@ See also: *Fetching A Large Number of Sorted Results: Cursors*
 > document returned to the client are used to compute a "mark" representing a
 > logical point in the ordered space of sort values.
 
+Requirements
+------------
+
+SOLR 4.7 or higher, since the cursor mechanism was introduced with SOLR 4.7
+([2014-02-25](https://archive.apache.org/dist/lucene/solr/4.7.0/)) &mdash; see
+also [efficient deep paging with
+cursors](https://solr.pl/en/2014/03/10/solr-4-7-efficient-deep-paging/).
+
 Installation
 ------------
 
