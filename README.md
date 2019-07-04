@@ -1,5 +1,4 @@
-README
-======
+# README
 
 Export documents from a SOLR index as JSON, fast and simply from the command
 line.
@@ -30,19 +29,21 @@ SOLR 4.7 or higher, since the cursor mechanism was introduced with SOLR 4.7
 also [efficient deep paging with
 cursors](https://solr.pl/en/2014/03/10/solr-4-7-efficient-deep-paging/).
 
-Installation
-------------
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
+This project has been developed for [Project finc](https://finc.info) at [Leipzig University Library](https://ub.uni-leipzig.de).
+
+## Installation
 
 Via debian or rpm [package](https://github.com/ubleipzig/solrdump/releases).
 
 Or via go tool:
 
-```
+```shell
 $ go get github.com/ubleipzig/solrdump/...
 ```
 
-Usage
------
+## Usage
 
 ```shell
 $ solrdump -h
@@ -74,7 +75,7 @@ $ solrdump -server https://localhost:8983/solr/biblio -q '*:*' -fl id,title
 
 Export documents matching a query and postprocess with [jq](https://stedolan.github.io/jq/):
 
-```
+```shell
 $ solrdump -server https://localhost:8983/solr/biblio -q 'title:"topic model"' -fl id,title | \
   jq -r .title | \
   head -10
@@ -87,12 +88,11 @@ Time dynamic topic models /
 ...
 ```
 
-Instant search as one-liner
----------------------------
+## Instant search as one-liner
 
 Using solrdump + [jq](https://stedolan.github.io/jq/) + [peco](https://github.com/peco/peco) (or [fzf](https://github.com/junegunn/fzf)).
 
-```
+```shell
 $ solrdump -server http://solr:8085/solr/biblio -q 'title:"artificial intelligence"' -fl 'id,title' | \
   jq -r .title | \
   peco
