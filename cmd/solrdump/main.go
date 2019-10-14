@@ -91,6 +91,9 @@ func main() {
 		if err != nil {
 			log.Fatalf("http: %s", err)
 		}
+		if resp.StatusCode >= 400 {
+			log.Fatal(resp.Status)
+		}
 		var response Response
 		switch *wt {
 		case "json":
