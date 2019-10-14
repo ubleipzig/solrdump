@@ -91,6 +91,7 @@ func main() {
 		if err != nil {
 			log.Fatalf("http: %s", err)
 		}
+		defer resp.Body.Close()
 		if resp.StatusCode >= 400 {
 			log.Fatal(resp.Status)
 		}
