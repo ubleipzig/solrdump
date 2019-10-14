@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
@@ -93,6 +94,11 @@ func main() {
 		}
 		defer resp.Body.Close()
 		if resp.StatusCode >= 400 {
+			b, err := ioutil.ReadAll(resp.Body)
+			if err != nil {
+				log.Println("failed to fetch response body for debugging")
+			}
+			log.Printf("response body (%d): %s", len(b), string(b))
 			log.Fatal(resp.Status)
 		}
 		var response Response
