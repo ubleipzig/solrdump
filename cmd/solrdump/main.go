@@ -11,6 +11,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/sethgrid/pester"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -86,7 +87,7 @@ func main() {
 		if *verbose {
 			log.Println(link)
 		}
-		resp, err := http.Get(link)
+		resp, err := pester.Get(link)
 		if err != nil {
 			log.Fatalf("http: %s", err)
 		}
