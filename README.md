@@ -29,7 +29,7 @@ SOLR 4.7 or higher, since the cursor mechanism was introduced with SOLR 4.7
 also [efficient deep paging with
 cursors](https://solr.pl/en/2014/03/10/solr-4-7-efficient-deep-paging/).
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) [![](https://goreportcard.com/badge/github.com/ubleipzig/solrdump)]
 
 This project has been developed for [Project finc](https://finc.info) at [Leipzig University Library](https://ub.uni-leipzig.de).
 
