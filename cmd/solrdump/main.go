@@ -19,6 +19,18 @@ import (
 // Version of application.
 const Version = "0.1.6"
 
+var (
+	server                      = flag.String("server", "http://localhost:8983/solr/example", "SOLR server, host post and collection")
+	fields                      = flag.String("fl", "", "field or fields to export, separate multiple values by comma")
+	query                       = flag.String("q", "*:*", "SOLR query")
+	rows                        = flag.Int("rows", 1000, "number of rows returned per request")
+	sort                        = flag.String("sort", "id asc", "sort order (only unique fields allowed)")
+	wt                          = flag.String("wt", "json", "output format")
+	verbose                     = flag.Bool("verbose", false, "show progress")
+	version                     = flag.Bool("version", false, "show version and exit")
+	skipCertificateVerification = flag.Bool("k", false, "skip certificate verfication")
+)
+
 // Response is a SOLR response.
 type Response struct {
 	Header struct {
@@ -48,36 +60,21 @@ func PrependSchema(s string) string {
 }
 
 func main() {
-	server := flag.String("server", "http://localhost:8983/solr/example", "SOLR server, host post and collection")
-	fields := flag.String("fl", "", "field or fields to export, separate multiple values by comma")
-	query := flag.String("q", "*:*", "SOLR query")
-	rows := flag.Int("rows", 1000, "number of rows returned per request")
-	sort := flag.String("sort", "id asc", "sort order (only unique fields allowed)")
-	wt := flag.String("wt", "json", "output format")
-	verbose := flag.Bool("verbose", false, "show progress")
-	version := flag.Bool("version", false, "show version and exit")
-	skipCertificateVerification := flag.Bool("k", false, "skip certificate verfication")
-
 	flag.Parse()
-
 	if *version {
 		fmt.Println(Version)
 		os.Exit(0)
 	}
-
 	if *skipCertificateVerification {
 		http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	}
-
 	*server = PrependSchema(*server)
 
 	v := url.Values{}
-
 	v.Set("q", *query)
 	v.Set("sort", *sort)
 	v.Set("rows", fmt.Sprintf("%d", *rows))
 	v.Set("fl", *fields)
-
 	v.Set("wt", *wt)
 	v.Set("cursorMark", "*")
 
