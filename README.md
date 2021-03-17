@@ -93,7 +93,7 @@ Time dynamic topic models /
 Using solrdump + [jq](https://stedolan.github.io/jq/) + [fzf](https://github.com/junegunn/fzf) (or [peco](https://github.com/peco/peco)).
 
 ```shell
-$ solrdump -server http://solr.io/solr/biblio -q 'title:"leipzig"' -fl 'id,source_id,title' |\
+$ solrdump -server http://solr.io/solr/biblio -q 'title:"leipzig"' -fl 'id,source_id,title' | \
     jq -rc '[.source_id, .title[:80]] | @tsv' | fzf -e
 ```
 
