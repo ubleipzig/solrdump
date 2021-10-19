@@ -54,14 +54,16 @@ type Dumper struct {
 }
 
 func (d *Dumper) Run() error {
-	v := url.Values{}
+	var (
+		total int
+		v     = url.Values{}
+	)
 	v.Set("q", d.Query)
 	v.Set("sort", d.Sort)
 	v.Set("rows", fmt.Sprintf("%d", d.NumRows))
 	v.Set("fl", d.Fields)
 	v.Set("wt", "json")
 	v.Set("cursorMark", "*")
-	var total int
 	for {
 		link := fmt.Sprintf("%s/select?%s", d.Server, v.Encode())
 		if d.Verbose {
