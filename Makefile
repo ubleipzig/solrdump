@@ -1,12 +1,11 @@
-SHELL = /bin/bash
-TARGETS = solrdump
-
-PKGNAME = solrdump
+SHELL := /bin/bash
+TARGETS := solrdump
+PKGNAME := solrdump
 
 all: $(TARGETS)
 
 $(TARGETS): %: cmd/%/main.go
-	go build -o $@ $< 
+	go build -o $@ $<
 
 clean:
 	rm -f $(TARGETS)
