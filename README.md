@@ -90,14 +90,13 @@ Time dynamic topic models /
 
 ## Instant search as one-liner
 
-Using solrdump + [jq](https://stedolan.github.io/jq/) + [peco](https://github.com/peco/peco) (or [fzf](https://github.com/junegunn/fzf)).
+Using solrdump + [jq](https://stedolan.github.io/jq/) + [fzf](https://github.com/junegunn/fzf) (or [peco](https://github.com/peco/peco)).
 
 ```shell
-$ solrdump -server http://solr:8085/solr/biblio -q 'title:"artificial intelligence"' -fl 'id,title' | \
-  jq -r .title | \
-  peco
+$ solrdump -server http://solr.io/solr/biblio -q 'title:"leipzig"' -fl 'id,source_id,title' | \
+    jq -rc '[.source_id, .title[:80]] | @tsv' | fzf -e
 ```
 
 ![](images/8e4zf1ryf2gusi3usv329btt8.gif)
 
-[...](https://asciinema.org/a/4dj5h3okqvgq16syd0ut05v8m)
+[...](https://asciinema.org/a/N8L01waFUixUfO6AIlOfp6RTC?autoplay=1)
