@@ -5,7 +5,7 @@ PKGNAME := solrdump
 all: $(TARGETS)
 
 $(TARGETS): %: cmd/%/main.go
-	go build -o $@ $<
+	go build -ldflags "-w -s" -o $@ $<
 
 clean:
 	rm -f $(TARGETS)
