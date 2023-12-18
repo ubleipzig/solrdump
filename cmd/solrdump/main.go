@@ -13,7 +13,7 @@ import (
 )
 
 // Version of application.
-const Version = "0.1.8"
+const Version = "0.1.9"
 
 var (
 	server                      = flag.String("server", "http://localhost:8983/solr/example", "SOLR server, host post and collection")
