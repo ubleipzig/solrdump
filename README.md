@@ -40,7 +40,7 @@ Via debian or rpm [package](https://github.com/ubleipzig/solrdump/releases).
 Or via go tool:
 
 ```shell
-$ go get github.com/ubleipzig/solrdump/...
+$ go install github.com/ubleipzig/solrdump/cmd/solrdump@latest
 ```
 
 ## Usage
