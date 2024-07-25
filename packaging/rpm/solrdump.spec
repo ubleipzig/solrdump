@@ -1,6 +1,6 @@
 Summary:    Dump SOLR fields efficiently with cursors.
 Name:       solrdump
-Version:    0.1.11
+Version:    0.1.12
 Release:    0
 License:    GPL
 BuildArch:  x86_64
