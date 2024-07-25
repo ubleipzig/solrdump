@@ -50,6 +50,7 @@ $ solrdump -h
 Usage of solrdump:
   -fl string
         field or fields to export, separate multiple values by comma
+  -k    skip certificate verfication
   -q string
         SOLR query (default "*:*")
   -rows int
