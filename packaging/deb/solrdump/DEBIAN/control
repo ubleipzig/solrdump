@@ -1,5 +1,5 @@
 Package: solrdump
-Version: 0.1.12
+Version: 0.1.15
 Section: utils
 Priority: optional
 Architecture: amd64
