@@ -3,7 +3,7 @@
 Export documents from a SOLR index as JSON, fast and simply from the command
 line.
 
-* https://cwiki.apache.org/confluence/display/solr/Pagination+of+Results
+* [query-guide/pagination-of-results.html](https://solr.apache.org/guide/solr/latest/query-guide/pagination-of-results.html#performance-problems-with-deep-paging)
 
 Requesting large number of documents from SOLR can lead to *Deep Paging*
 problems:
