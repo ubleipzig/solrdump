@@ -36,5 +36,5 @@ rm -rf %{_topdir}/BUILD/%{name}
 /usr/local/sbin/solrdump
 
 %changelog
-* Thu Dec 6 2016 Martin Czygan
+* Tue Dec 6 2016 Martin Czygan
 - 0.1.2 initial release
