@@ -1,30 +1,44 @@
 SHELL := /bin/bash
 TARGETS := solrdump
 PKGNAME := solrdump
+VERSION := 0.1.15
 
+SEMVER := $(shell echo $(VERSION) | sed 's/^v//')
+
+.PHONY: all
 all: $(TARGETS)
 
 $(TARGETS): %: cmd/%/main.go
-	go build -ldflags "-w -s" -o $@ $<
+	go build -ldflags "-w -s -X main.Version=$(VERSION)" -o $@ $<
 
+# Cross-compiled linux/amd64 binary used for packaging (deb/rpm), kept in a
+# separate directory so it never overwrites the native dev binary above and
+# the host platform (e.g. macOS arm64) does not leak into the package.
+build/solrdump: cmd/solrdump/main.go
+	@mkdir -p build
+	GOOS=linux GOARCH=amd64 go build -ldflags "-w -s -X main.Version=$(VERSION)" -o $@ $<
+
+.PHONY: test
+test:
+	go test -v ./...
+
+.PHONY: clean
 clean:
+	go clean
 	rm -f $(TARGETS)
-	rm -f $(PKGNAME)_*deb
-	rm -f $(PKGNAME)-*rpm
-	rm -rf packaging/deb/$(PKGNAME)/usr
+	rm -rf build
+	rm -f $(PKGNAME)_*.deb
+	rm -f $(PKGNAME)-*.rpm
 
+.PHONY: imports
 imports:
 	goimports -w .
 
-deb: $(TARGETS)
-	mkdir -p packaging/deb/$(PKGNAME)/usr/sbin
-	cp $(TARGETS) packaging/deb/$(PKGNAME)/usr/sbin
-	cd packaging/deb && fakeroot dpkg-deb --build $(PKGNAME) .
-	mv packaging/deb/$(PKGNAME)_*.deb .
+# nfpm-based packaging.
+.PHONY: deb
+deb: build/solrdump
+	SEMVER=$(SEMVER) GOARCH=amd64 nfpm package -p deb -f nfpm.yaml
 
-rpm: $(TARGETS)
-	mkdir -p $(HOME)/rpmbuild/{BUILD,SOURCES,SPECS,RPMS}
-	cp ./packaging/rpm/$(PKGNAME).spec $(HOME)/rpmbuild/SPECS
-	cp $(TARGETS) $(HOME)/rpmbuild/BUILD
-	./packaging/rpm/buildrpm.sh $(PKGNAME)
-	cp $(HOME)/rpmbuild/RPMS/x86_64/$(PKGNAME)*.rpm .
+.PHONY: rpm
+rpm: build/solrdump
+	SEMVER=$(SEMVER) GOARCH=amd64 nfpm package -p rpm -f nfpm.yaml

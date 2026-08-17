@@ -1,0 +1,30 @@
+name: solrdump
+arch: ${GOARCH}
+platform: linux
+version: ${SEMVER}
+version_schema: semver
+epoch: 0
+release: 1
+section: utils
+priority: optional
+maintainer: Martin Czygan <martin.czygan@uni-leipzig.de>
+description: Export documents from a SOLR index as JSON, using cursors.
+vendor: Leipzig University Library
+homepage: https://github.com/ubleipzig/solrdump
+license: GPL-3.0
+disable_globbing: false
+
+contents:
+  # Binary
+  - src: build/solrdump
+    dst: /usr/local/bin/solrdump
+    file_info:
+      mode: 0755
+
+umask: 0o002
+
+deb:
+  compression: zstd
+
+rpm:
+  compression: zstd

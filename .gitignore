@@ -1,7 +1,7 @@
 /solrdump-*
 /solrdump
+/build
 solrdump*.deb
 solrdump*.rpm
-/packaging/deb/solrdump/usr/*
 /tmp
 /*.ndj

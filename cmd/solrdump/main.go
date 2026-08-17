@@ -12,8 +12,8 @@ import (
 	"github.com/ubleipzig/solrdump"
 )
 
-// Version of application.
-const Version = "0.1.15"
+// Version of application, may be set at build time via ldflags.
+var Version = "0.1.15"
 
 var (
 	server                      = flag.String("server", "http://localhost:8983/solr/example", "SOLR server, host post and collection")
